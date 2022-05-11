@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import useLocalStorage from './hooks/useLocalStorage';
 import Container from './Container/Container';
@@ -16,7 +17,12 @@ export default function App() {
     let isAdded = false;
     contacts.forEach(el => {
       if (el.name === contact.name) {
-        alert(`${contact.name} is already in contacts`);
+        // alert(`${contact.name} is already in contacts`);
+        Report.failure(
+          'WARNING',
+          `${contact.name} is already in contacts`,
+          'close'
+        );
         isAdded = true;
       }
     });
